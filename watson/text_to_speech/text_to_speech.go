@@ -21,7 +21,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
 type Client struct {

@@ -22,7 +22,7 @@ import (
 	"mime/multipart"
 	"net/http"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
 type Client struct {

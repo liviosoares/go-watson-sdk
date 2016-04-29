@@ -18,7 +18,7 @@ package text_to_speech
 import (
 	"testing"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
 func TestListVoices(t *testing.T) {

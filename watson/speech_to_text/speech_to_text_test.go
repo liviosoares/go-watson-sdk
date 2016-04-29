@@ -20,7 +20,7 @@ import (
 	"os"
 	"testing"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
 func TestListModels(t *testing.T) {

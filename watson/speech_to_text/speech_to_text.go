@@ -21,8 +21,8 @@ import (
 	"io"
 	"net/url"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
-	"github.ibm.com/lsoares/go-watson-sdk/watson/authorization"
+	"github.com/liviosoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson/authorization"
 	"golang.org/x/net/websocket"
 )
 

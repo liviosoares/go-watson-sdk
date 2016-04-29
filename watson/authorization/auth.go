@@ -18,7 +18,7 @@ package authorization
 import (
 	"net/url"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
 // Uses /authorization endpoint to obtain a token for the service described in creds

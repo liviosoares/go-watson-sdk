@@ -18,8 +18,8 @@ package alchemy_data_news
 import (
 	"fmt"
 
-	"github.ibm.com/lsoares/go-watson-sdk/watson"
-	"github.ibm.com/lsoares/go-watson-sdk/watson/alchemy"
+	"github.com/liviosoares/go-watson-sdk/watson"
+	"github.com/liviosoares/go-watson-sdk/watson/alchemy"
 )
 
 type Client struct {
