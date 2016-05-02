@@ -1,5 +1,4 @@
 # Go SDK for IBM Watson services
-============================================
 [![GoDoc](https://godoc.org/github.com/liviosoares/go-watson-sdk?status.svg)](https://godoc.org/github.com/liviosoares/go-watson-sdk)
 [![CLA assistant](https://cla-assistant.io/readme/badge/liviosoares/go-watson-sdk)](https://cla-assistant.io/liviosoares/go-watson-sdk)
 
@@ -21,7 +20,7 @@ go get github.com/liviosoares/go-watson-sdk/...
 ```
 
 ## Documentation
-Go API documentation @ godoc.org: https://godoc.org/github.com/liviosoares/go-watson-sdk
+Go API documentation @ godoc.org: https://godoc.org/github.com/liviosoares/go-watson-sdk  
 Watson Developer Cloud: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/
 
 ## Basic Usage
