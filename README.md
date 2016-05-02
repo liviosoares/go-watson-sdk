@@ -54,9 +54,10 @@ If you do not want to rely on the setup of the `$VCAP_SERVICES` environment vari
 	)
 
 	config := watson.Config{
-		"url": "https://gateway.watsonplatform.net/concept-insights/api",
-		"username": "... <user id> ...",
-		"password": " ... <password> ..."
+		Credentials: watson.Credentials{
+			Username: "... username ...",
+			Password: "... password ...",
+		},
 	}
 	client, err := concept_insights.NewClient(config)
 
