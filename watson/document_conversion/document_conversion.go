@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package document_conversion provides an interface to Watson Document Conversion service.
 package document_conversion
 
 import (

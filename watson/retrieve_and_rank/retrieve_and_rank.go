@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package retrieve_and_rank provides an interface to Watson Retrieve and Rank service.
 package retrieve_and_rank
 
 import (

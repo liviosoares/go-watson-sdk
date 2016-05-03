@@ -70,4 +70,4 @@ Concept Insights
 See sub-package specific documentation for more examples.
 
 */
-package doc
+package sdk

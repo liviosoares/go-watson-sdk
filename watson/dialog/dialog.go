@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package dialog provides an interface to Watson Dialog service.
 package dialog
 
 import (

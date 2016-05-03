@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package natural_language_classifier provides an interface to Watson Natural Language Classifier service.
 package natural_language_classifier
 
 import (

@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package alchemy_data_news provides an interface to AlchemyData News API.
+// More documentation available at: doc.alchemyapi.com
 package alchemy_data_news
 
 import (
@@ -26,7 +28,7 @@ type Client struct {
 	alchemyClient *alchemy.Client
 }
 
-// Connects to instance of Watson Concept Insights service
+// Connects to instance of Watson AlchemyData News
 func NewClient(cfg watson.Config) (Client, error) {
 	client, err := alchemy.NewClient(cfg)
 	if err != nil {
@@ -36,50 +38,21 @@ func NewClient(cfg watson.Config) (Client, error) {
 }
 
 type Result map[string]interface{}
-// 	alchemy.BaseResponse
-// 	Result struct {
-// 		Count  int    `json:"count,omitempty"`
-// 		Status string `json:"status,omitempty"`
-// 		Docs   []struct {
-// 			Id     string `json:"id,omitempty"`
-// 			Source struct {
-// 				Original struct {
-// 					Url string `json:"url,omitempty"`
-// 				} `json:"original,omitempty"`
-// 				Enriched struct {
-// 					Url struct {
-// 						Author        string       `json:"author,omitempty"`
-// 						CleanedTitle  string       `json:cleanedTitle,omitempty"`
-// 						Concepts      []Concept    `json:"concepts,omitempty"`
-// 						DocSentiment  DocSentiment `json:"docSentiment,omitempty"`
-// 						EnrichedTitle struct {
-// 							Concepts     []Concept    `json:"concepts,omitempty"`
-// 							DocSentiment DocSentiment `json:"docSentiment,omitempty"`
-// 							Entities []string
-// 						} `json:"enrichedTitle,omitempty"`
-// 					} `json:"url,omitempty"`
-// 				}
-// 			} `json:"source,omitempty"`
-// 			Timestamp int `json:"timestamp,omitempty"`
-// 		} `json:"docs,omitempty"`
-// 		Next string `json:"next,omitempty"`
-// 	} `json:"result,omitempty"`
-// }
 
-// type Concept struct {
-// 	KnowledgeGraph struct {
-// 		TypeHierarchy string `json:"typeHierarchy"`
-// 	} `json:"knowledgeGraph,omitempty"`
-// 	Relevance float64 `json:relevance,omitempty"`
-// 	Text      string  `json:"text,omitempty"`
-// }
-
-// type DocSentiment struct {
-// 	Mixed int     `json:"mixed,omitempty"`
-// 	Score float64 `json:"score,omitempty"`
-// 	Type  string  `json:"type,omitempty"`
-// }
-
+// GetNews calls the AlchemyData News endpoint to retrieve recent news articles according to the provided query.
+// start and end is used to specify the time range desired for news articles. The exact format of the time string
+// is documented at: https://alchemyapi.readme.io/v1.0/docs/rest-api-documentation
+// The query parameter supports the AlchemyData News query language also documented here:
+// https://alchemyapi.readme.io/v1.0/docs/rest-api-documentation#section-parameters-filters-
+//
+// One simple example of usage:
+//
+// 	result, err := c.GetNews("now-24h", "now",
+// 					map[string]interface{}{
+// 							"q.enriched.url.title": "[baseball^soccer]",
+// 							"return": "enriched.url.title,enriched.url.author,original.url",
+// 					})
+//
 func (c Client) GetNews(start string, end string, query map[string]interface{}) (Result, error) {
 	q := make(map[string]interface{})
 	for k, v := range query {

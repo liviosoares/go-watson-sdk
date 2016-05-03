@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package visual_recognition provides an interface to Watson Visual Recognition service.
 package visual_recognition
 
 import (

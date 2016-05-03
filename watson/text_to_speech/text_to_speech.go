@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package text_to_speech provides an interface to Watson Text to Speech service.
 package text_to_speech
 
 import (

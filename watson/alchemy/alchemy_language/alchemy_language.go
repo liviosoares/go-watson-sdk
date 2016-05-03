@@ -24,7 +24,7 @@ type Client struct {
 	alchemyClient *alchemy.Client
 }
 
-// Connects to instance of Watson Concept Insights service
+// Connects to instance of Watson Alchemy Language services
 func NewClient(cfg watson.Config) (Client, error) {
 	client, err := alchemy.NewClient(cfg)
 	if err != nil {

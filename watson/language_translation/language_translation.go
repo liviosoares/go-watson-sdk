@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package language_translation provides an interface to Watson Language Translation service.
 package language_translation
 
 import (

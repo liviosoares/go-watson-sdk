@@ -13,6 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package alchemy provides an interface to Alchemy based API endpoints.
+// This package contains general methods used by the Alchemy specific family of endpoints,
+// including alchemy_language, alchemy_data_news and alchemy_vision.
 package alchemy
 
 import (
@@ -30,6 +33,7 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
+// NewClient uses the cfg configuration to connect to the Alchemy endpoints.
 func NewClient(cfg watson.Config) (Client, error) {
 	cfg.Credentials.ServiceName = "alchemy_api"
 	client, err := watson.NewClient(cfg.Credentials)
@@ -59,6 +63,7 @@ func detectAlchemyPath(data []byte) (key string, pathPrefix string, err error) {
 	return "text", "/text/Text", nil
 }
 
+// BaseResponse contains common fields returned by a few different Alchemy endpoints
 type BaseResponse struct {
 	Status           string `json:"status"`
 	Usage            string `json:"usage,omitempty"`
@@ -69,6 +74,10 @@ type BaseResponse struct {
 	StatusInfo       string `json:"statusInfo,omitempty"`
 }
 
+// Call uses POST method to call an Alchemy API endpoint. The method authenticates the call using the ApiKey in the Client object.
+// payload is the content passed in the url, html or text keys.
+// options can be used to pass additional query parameters to the call.
+// out is the object used for unmarshalling the returned JSON
 func (c Client) Call(pathSuffix string, payload []byte, options map[string]interface{}, out interface{}) error {
 	dataKey, pathPrefix, err := detectAlchemyPath(payload)
 	if err != nil {
@@ -100,6 +109,9 @@ func (c Client) Call(pathSuffix string, payload []byte, options map[string]inter
 	return json.Unmarshal(body, out)
 }
 
+// Get uses the GET method to call an Alchemy API endpoint. The method authenticates the call using the ApiKey in the Client object.
+// query can be used to pass additional query parameters to the call.
+// out is the object used for unmarshalling the returned JSON
 func (c Client) Get(path string, query map[string]interface{}, out interface{}) error {
 	q := url.Values{}
 	for k, v := range query {
@@ -123,6 +135,7 @@ func (c Client) Get(path string, query map[string]interface{}, out interface{}) 
 	return json.Unmarshal(body, out)
 }
 
+// Disambiguated contains information about a concept tag returned by some of the Alchmey API endpoints.
 type Disambiguated struct {
 	Name        string   `json:"name,omitempty"`
 	SubType     []string `json:"subType,omitempty"`

@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package visual_insights provides an interface to Watson Visual Insights service.
 package visual_insights
 
 import (
