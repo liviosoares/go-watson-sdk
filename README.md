@@ -7,6 +7,7 @@ Go (golang) client library to use the [Watson Developer Cloud][wdc] services.
 ## Table of Contents
    * [Installation](#installation)
    * [Documentation](#documentation)
+   * [Status](#status)
    * [Basic Usage](#basic-usage)
    * [Testing](#testing)
    * [License](#license)
@@ -22,6 +23,29 @@ go get github.com/liviosoares/go-watson-sdk/...
 ## Documentation
 Go API documentation @ godoc.org: https://godoc.org/github.com/liviosoares/go-watson-sdk  
 Watson Developer Cloud: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/
+
+## Status
+
+There are tests covering a large portion of the Watson cloud services. However, the API of this package are subject to change, and I would consider it's current release to be **alpha** quality.
+
+The following table shows the list of Watson services covered by the package, and the implemented version number:
+
+Service | Major Version |  Minor Version
+--------| --------------|---------------
+Alchemy | (not currently versioned) |
+Authorization | `v1` |
+Concept Insights | `v2` |
+Dialog | `v1` |
+Document Conversion | `v1` | `2015-12-15`
+Language Transalation | `v2` |
+Natural Language Classifier | `v1` | 
+Personality Insights | `v2` |
+Retrieve and Rank | `v1` |
+Speech to Text | `v1` |
+Text to Speech | `v1` |
+Tone Analyzer | `v3` | `2016-02-11`
+Visual Insights | `v1` |
+Visual Recognition | `v2` | `2015-12-02`
 
 ## Basic Usage
 For complete documentation, see the references above to the [Godoc](https://godoc.org/github.com/liviosoares/go-watson-sdk) documentation.
