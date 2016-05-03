@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package alchemy_vision provides an interface to Alchemy Vision services.
+// More documentation available at: http://www.alchemyapi.com/api
 package alchemy_vision
 
 import (

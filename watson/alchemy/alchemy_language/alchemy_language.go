@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Package alchemy_language provides an interface to Alchemy Language services.
+// More documentation available at: http://www.alchemyapi.com/api
 package alchemy_language
 
 import (
