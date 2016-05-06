@@ -2,6 +2,7 @@
 [![GoDoc](https://godoc.org/github.com/liviosoares/go-watson-sdk?status.svg)](https://godoc.org/github.com/liviosoares/go-watson-sdk)
 [![CLA assistant](https://cla-assistant.io/readme/badge/liviosoares/go-watson-sdk)](https://cla-assistant.io/liviosoares/go-watson-sdk)
 [![Build Status](https://travis-ci.org/liviosoares/go-watson-sdk.svg?branch=master)](https://travis-ci.org/liviosoares/go-watson-sdk)
+[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/liviosoares/go-watson-sdk/blob/master/LICENSE)
 
 Go (golang) client library to use the [Watson Developer Cloud][wdc] services.
 
