@@ -1,6 +1,7 @@
 # Go SDK for IBM Watson services
 [![GoDoc](https://godoc.org/github.com/liviosoares/go-watson-sdk?status.svg)](https://godoc.org/github.com/liviosoares/go-watson-sdk)
 [![CLA assistant](https://cla-assistant.io/readme/badge/liviosoares/go-watson-sdk)](https://cla-assistant.io/liviosoares/go-watson-sdk)
+[![Build Status](https://travis-ci.org/liviosoares/go-watson-sdk.svg?branch=master)](https://travis-ci.org/liviosoares/go-watson-sdk)
 
 Go (golang) client library to use the [Watson Developer Cloud][wdc] services.
 
