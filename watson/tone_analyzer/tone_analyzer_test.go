@@ -25,6 +25,7 @@ func TestTone(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	text := `It was the best of times. It was the worst of times. It was the age of wisdom. It was the age of foolishness. It was the epoch of belief. It was the epoch of incredulity. It was the season of Light. It was the season of Darkness. It was the spring of hope. It was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way–in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only.`
 	analysis, err := c.Tone(text, nil) // map[string]interface{}{"sentences": true})

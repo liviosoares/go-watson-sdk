@@ -27,6 +27,7 @@ func TestSentiment(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	sentiment, err := c.GetSentiment([]byte(sampleText), nil)
 	if err != nil {
@@ -44,6 +45,7 @@ func TestSentimentTargeted(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	sentiment, err := c.GetSentimentTargeted([]byte(sampleText), []string{"UN Women", "feminism", "muscly"}, nil)
 	if err != nil {
@@ -61,6 +63,7 @@ func TestEmotion(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	emotion, err := c.GetEmotion([]byte(sampleText), nil)
 	if err != nil {
@@ -77,6 +80,7 @@ func TestRankedTaxonomy(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	tax, err := c.GetTaxonomy([]byte(sampleText), nil)
 	if err != nil {
@@ -94,6 +98,7 @@ func TestConcepts(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	concepts, err := c.GetConcepts([]byte(sampleText), nil)
 	if err != nil {
@@ -111,6 +116,7 @@ func TestNamedEntities(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	entities, err := c.GetNamedEntities([]byte(sampleText), nil)
 	if err != nil {
@@ -128,6 +134,7 @@ func TestKeywords(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	keywords, err := c.GetKeywords([]byte(sampleText), nil)
 	if err != nil {
@@ -145,6 +152,7 @@ func TestGetRelations(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	relations, err := c.GetRelations([]byte(sampleText), nil)
 	if err != nil {
@@ -162,6 +170,7 @@ func TestGetText(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	text, err := c.GetText([]byte("https://en.wikipedia.org/wiki/Watson_(computer)"), nil)
 	if err != nil {
@@ -179,6 +188,7 @@ func TestGetRawText(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	text, err := c.GetRawText([]byte("https://en.wikipedia.org/wiki/Watson_(computer)"), nil)
 	if err != nil {
@@ -196,6 +206,7 @@ func TestGetTitle(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	text, err := c.GetTitle([]byte("https://en.wikipedia.org/wiki/Watson_(computer)"), nil)
 	if err != nil {
@@ -213,6 +224,7 @@ func TestGetAuthor(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	author, err := c.GetAuthor([]byte("http://www.nytimes.com/2015/08/16/opinion/sunday/oliver-sacks-sabbath.html"), nil)
 	if err != nil {
@@ -230,6 +242,7 @@ func TestGetAuthors(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	authors, err := c.GetAuthors([]byte("http://www.nytimes.com/2015/08/16/opinion/sunday/oliver-sacks-sabbath.html"), nil)
 	if err != nil {
@@ -247,6 +260,7 @@ func TestGetLanguage(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	lang, err := c.GetLanguage([]byte("Una sentencia debe tener un verbo"), nil)
 	if err != nil {
@@ -264,6 +278,7 @@ func TestGetFeedLinks(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	feeds, err := c.GetFeedLinks([]byte("http://www.nytimes.com"), nil)
 	if err != nil {
@@ -281,6 +296,7 @@ func TestExtractDates(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	dates, err := c.ExtractDates([]byte("http://www.nytimes.com/2015/08/16/opinion/sunday/oliver-sacks-sabbath.html"), nil)
 	if err != nil {
@@ -298,6 +314,7 @@ func TestGetPubDate(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	dates, err := c.GetPubDate([]byte("http://www.nytimes.com/2015/08/16/opinion/sunday/oliver-sacks-sabbath.html"), nil)
 	if err != nil {

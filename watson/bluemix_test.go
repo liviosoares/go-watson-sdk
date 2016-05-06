@@ -79,14 +79,17 @@ func TestGetCredentials(t *testing.T) {
 		creds, err := getBluemixCredentials(vcapTests[i].service_name, vcapTests[i].service_plan)
 		if (err != nil && vcapTests[i].err == nil) || (err == nil && vcapTests[i].err != nil) {
 			t.Errorf("credentials test %d:\nVCAP_SERVICES = %s\ngot error %#v\nwanted %#v\n", i, vcapTests[i].vcap_services, err, vcapTests[i].err)
+			return
 		}
 		if err != nil && vcapTests[i].err != nil {
 			if !strings.HasPrefix(err.Error(), vcapTests[i].err.Error()) {
 				t.Errorf("credentials test %d:\nVCAP_SERVICES = %s\ngot error %#v\nwanted %#v\n", i, vcapTests[i].vcap_services, err.Error(), vcapTests[i].err)
+				return
 			}
 		}
 		if !reflect.DeepEqual(creds, vcapTests[i].want) {
 			t.Errorf("credentials test %d:\nVCAP_SERVICES = %s\ngot %#v\nwanted %#v\n", i, vcapTests[i].vcap_services, creds, vcapTests[i].want)
+			return
 		}
 	}
 }

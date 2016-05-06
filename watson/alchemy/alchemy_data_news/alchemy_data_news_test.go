@@ -25,6 +25,7 @@ func TestGetNews(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	_, err = c.GetNews("now-24h", "now", nil)
 	if err != nil {
@@ -38,6 +39,7 @@ func TestGetNews2(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	_, err = c.GetNews("now-24h", "now", map[string]interface{}{"q.enriched.url.title": "[baseball^soccer]", "return": "enriched.url.title,enriched.url.author,original.url"})
 	if err != nil {

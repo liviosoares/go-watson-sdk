@@ -26,13 +26,16 @@ func TestListModels(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	models, err := c.ListModels(nil)
 	if err != nil {
 		t.Errorf("ListModels() failed %#v\n", err)
+		return
 	}
 	if len(models.Models) == 0 {
 		t.Errorf("ListModels() returned 0 length account slice, wanted >= 1\n")
+		return
 	}
 }
 
@@ -54,6 +57,7 @@ func TestGetModelStatus(t *testing.T) {
 	}
 	if status.Status != "available" {
 		t.Errorf("GetModelStatus(\"%s\") returned unexpected status. wanted %s got %s\n", models.Models[0].ModelId, "available", status.Status)
+		return
 	}
 }
 
@@ -89,6 +93,7 @@ func TestCreateModel(t *testing.T) {
 	}
 	if len(model) == 0 {
 		t.Errorf("CreateModel() claimed success, but returned empty model_id %#v\n", model)
+		return
 	}
 }
 

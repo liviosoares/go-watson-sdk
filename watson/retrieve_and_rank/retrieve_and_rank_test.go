@@ -23,43 +23,11 @@ import (
 	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
-func TestListClusters(t *testing.T) {
-	c, err := NewClient(watson.Config{})
-	if err != nil {
-		t.Errorf("NewClient() failed %#v\n", err)
-	}
-	clusters, err := c.ListClusters()
-	if err != nil {
-		t.Errorf("ListClusters() failed %#v\n", err)
-	}
-	t.Logf("%+v\n", clusters)
-}
-
-func TestGetCluster(t *testing.T) {
-	c, err := NewClient(watson.Config{})
-	if err != nil {
-		t.Errorf("NewClient() failed %#v\n", err)
-	}
-	clusters, err := c.ListClusters()
-	if err != nil {
-		t.Errorf("ListClusters() failed %#v\n", err)
-		return
-	}
-	if len(clusters.Clusters) == 0 {
-		t.Errorf("TestGetCluster() no clusters to list; ListClusters() returned empty list\n")
-		return
-	}
-	cluster, err := c.GetCluster(clusters.Clusters[0].Id)
-	if err != nil {
-		t.Errorf("GetCluster() failed %#v\n", err)
-	}
-	t.Logf("%+v\n", cluster)
-}
-
 func TestCreateCluster(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	cluster, err := c.CreateCluster("go-test", 0)
 	if err != nil {
@@ -80,6 +48,43 @@ func TestCreateCluster(t *testing.T) {
 		t.Logf("%+v\n", c)
 		time.Sleep(5 * time.Second)
 	}
+}
+
+func TestListClusters(t *testing.T) {
+	c, err := NewClient(watson.Config{})
+	if err != nil {
+		t.Errorf("NewClient() failed %#v\n", err)
+		return
+	}
+	clusters, err := c.ListClusters()
+	if err != nil {
+		t.Errorf("ListClusters() failed %#v\n", err)
+		return
+	}
+	t.Logf("%+v\n", clusters)
+}
+
+func TestGetCluster(t *testing.T) {
+	c, err := NewClient(watson.Config{})
+	if err != nil {
+		t.Errorf("NewClient() failed %#v\n", err)
+		return
+	}
+	clusters, err := c.ListClusters()
+	if err != nil {
+		t.Errorf("ListClusters() failed %#v\n", err)
+		return
+	}
+	if len(clusters.Clusters) == 0 {
+		t.Errorf("TestGetCluster() no clusters to list; ListClusters() returned empty list\n")
+		return
+	}
+	cluster, err := c.GetCluster(clusters.Clusters[0].Id)
+	if err != nil {
+		t.Errorf("GetCluster() failed %#v\n", err)
+		return
+	}
+	t.Logf("%+v\n", cluster)
 }
 
 func TestUploadConfig(t *testing.T) {
@@ -123,6 +128,7 @@ func TestListConfigs(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -155,6 +161,7 @@ func TestGetConfig(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -191,6 +198,7 @@ func TestCreateCollection(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -223,6 +231,7 @@ func TestListCollections(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -255,6 +264,7 @@ func TestUpdateCollection(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -295,6 +305,7 @@ func TestSearch(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -329,6 +340,7 @@ func TestListRankers(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	rankers, err := c.ListRankers()
 	if err != nil {
@@ -342,6 +354,7 @@ func TestDeleteCluster(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	clusters, err := c.ListClusters()
 	if err != nil {
@@ -365,5 +378,6 @@ func TestDeleteCluster(t *testing.T) {
 	err = c.DeleteCluster(id)
 	if err != nil {
 		t.Errorf("DeleteCluster() failed %#v\n", err)
+		return
 	}
 }

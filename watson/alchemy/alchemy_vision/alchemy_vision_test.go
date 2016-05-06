@@ -25,6 +25,7 @@ func TestGetImageKeywords(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	keywords, err := c.GetImageKeywords([]byte("http://www.nytimes.com/2015/08/16/opinion/sunday/oliver-sacks-sabbath.html"), nil)
 	if err != nil {
@@ -42,6 +43,7 @@ func TestGetImageLink(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	link, err := c.GetImageLink([]byte("http://www.nytimes.com/2015/08/16/opinion/sunday/oliver-sacks-sabbath.html"), nil)
 	if err != nil {
@@ -59,6 +61,7 @@ func TestGetImageFaceTags(t *testing.T) {
 	c, err := NewClient(watson.Config{})
 	if err != nil {
 		t.Errorf("NewClient() failed %#v\n", err)
+		return
 	}
 	tags, err := c.GetImageFaceTags([]byte("http://faculty.polytechnic.org/gfeldmeth/group_01.jpg"), nil)
 	if err != nil {

@@ -30,9 +30,11 @@ func TestListVoices(t *testing.T) {
 	voices, err := c.ListVoices()
 	if err != nil {
 		t.Errorf("ListVoices() failed %#v\n", err)
+		return
 	}
 	if len(voices.Voices) == 0 {
 		t.Errorf("ListVoices() returned 0 length account slice, wanted >= 1\n")
+		return
 	}
 }
 
@@ -45,9 +47,11 @@ func TestGetVoice(t *testing.T) {
 	voice, err := c.GetVoice("en-US_MichaelVoice", "")
 	if err != nil {
 		t.Errorf("GetVoices() failed %#v\n", err)
+		return
 	}
 	if voice.Language != "en-US" {
 		t.Errorf("GetVoice() returned wrong language. Wanted %s, got %s\n", "en-US", voice.Language)
+		return
 	}
 }
 
@@ -60,8 +64,10 @@ func TestGetPronuncation(t *testing.T) {
 	p, err := c.GetPronunciation("Watson", "", "")
 	if err != nil {
 		t.Errorf("GetPronunciation() failed %#v\n", err)
+		return
 	}
 	if p != ".ˈwɑt.sən" {
 		t.Errorf("GetVoice() returned wrong language. Wanted %s, got %s\n", ".ˈwɑt.sən", p)
+		return
 	}
 }

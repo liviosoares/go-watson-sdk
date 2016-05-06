@@ -26,8 +26,10 @@ func TestGetAuth(t *testing.T) {
 	token, err := GetToken(creds)
 	if err != nil {
 		t.Errorf("GetToken() failed for %#v: %#v\n", creds, err)
+		return
 	}
 	if len(token) < 512 {
 		t.Errorf("GetToken() returned token with short length. Wanted >%d, got %d\n", 512, len(token))
+		return
 	}
 }

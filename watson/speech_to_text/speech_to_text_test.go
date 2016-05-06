@@ -32,9 +32,11 @@ func TestListModels(t *testing.T) {
 	models, err := c.ListModels()
 	if err != nil {
 		t.Errorf("ListModels() failed %#v\n", err)
+		return
 	}
 	if len(models.Models) == 0 {
 		t.Errorf("ListModels() returned 0 length account slice, wanted >= 1\n")
+		return
 	}
 	found_US := false
 	for i := range models.Models {
@@ -45,6 +47,7 @@ func TestListModels(t *testing.T) {
 	}
 	if !found_US {
 		t.Errorf("ListModels() returned no model with \"en-US\"\n")
+		return
 	}
 }
 
@@ -57,16 +60,19 @@ func TestStream(t *testing.T) {
 	output, stream, err := c.NewStream("", "audio/wav", map[string]interface{}{"continuous": true, "interim_results": false, "timestamps": false})
 	if err != nil {
 		t.Errorf("NewStream() failed %#v %s\n", err, err.Error())
+		return
 	}
 
 	f, err := os.Open("test_data/speech.wav")
 	if err != nil {
 		t.Errorf("NewStream() failed to open audio file %s %s\n", "test_data/speech.wav", err)
+		return
 	}
 	go func() {
 		_, err = io.Copy(stream, f)
 		if err != nil {
 			t.Errorf("io.Copy() failed to copy audio file to API %s\n", err.Error())
+			return
 		}
 		stream.Close()
 	}()
