@@ -37,6 +37,7 @@ Service | Major Version |  Minor Version
 Alchemy | (not currently versioned) |
 Authorization | `v1` |
 Concept Insights | `v2` |
+Conversation (experimental) | `v1` | `2016-05-19`
 Dialog | `v1` |
 Document Conversion | `v1` | `2015-12-15`
 Language Transalation | `v2` |

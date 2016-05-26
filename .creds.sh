@@ -22,13 +22,13 @@ export VCAP_SERVICES='{
 	    }
 	}
     ],
-    "conversations": [
+    "conversation": [
         {
-	    "name": "conversations-service",
-	    "label": "conversations",
-	    "plan": "beta",
+	    "name": "conversation-experimental",
+	    "label": "conversation",
+	    "plan": "experimental",
 	    "credentials": {
-		"url": "https://gateway-s.watsonplatform.net/dialog-beta/api",
+		"url": "https://gateway.watsonplatform.net/conversation-experimental/api",
 		"password": "",
 		"username": ""
 	    }

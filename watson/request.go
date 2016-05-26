@@ -49,7 +49,7 @@ type Credentials struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 	// ApiKey is currently only used for Alchemy based services
-	ApiKey   string `json:"apikey"`
+	ApiKey string `json:"apikey"`
 	// ServiceName needs to be filled in order to extract credentials from
 	// VCAP_SERVICES environment variable
 	ServiceName string
@@ -73,7 +73,7 @@ func NewClient(creds Credentials) (*Client, error) {
 
 // WatsonError stores error information from a Watson API endpoint
 type WatsonError struct {
-	Code int
+	Code    int
 	Message string
 }
 
