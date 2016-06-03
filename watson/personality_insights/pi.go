@@ -29,12 +29,18 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultPiVersion = "v2"
+const defaultMajorVersion = "v2"
+const defaultUrl = "https://gateway.watsonplatform.net/personality-insights/api"
 
 // Connects to instance of Watson Natural Language Classifier service
 func NewClient(cfg watson.Config) (Client, error) {
-	pi := Client{version: "/" + defaultPiVersion}
-	cfg.Credentials.ServiceName = "personality_insights"
+	pi := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "personality_insights"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

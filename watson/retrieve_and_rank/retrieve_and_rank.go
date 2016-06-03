@@ -33,12 +33,18 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultRetrieveAndRankVersion = "v1"
+const defaultMajorVersion = "v1"
+const defaultUrl = "https://gateway.watsonplatform.net/retrieve-and-rank/api"
 
 // Connects to instance of Watson Concept Insights service
 func NewClient(cfg watson.Config) (Client, error) {
-	ci := Client{version: "/" + defaultRetrieveAndRankVersion}
-	cfg.Credentials.ServiceName = "retrieve_and_rank"
+	ci := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "retrieve_and_rank"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

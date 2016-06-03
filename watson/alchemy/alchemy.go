@@ -29,13 +29,20 @@ import (
 	"github.com/liviosoares/go-watson-sdk/watson"
 )
 
+const defaultUrl = "https://gateway-a.watsonplatform.net/calls"
+
 type Client struct {
 	watsonClient *watson.Client
 }
 
 // NewClient uses the cfg configuration to connect to the Alchemy endpoints.
 func NewClient(cfg watson.Config) (Client, error) {
-	cfg.Credentials.ServiceName = "alchemy_api"
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "alchemy_api"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

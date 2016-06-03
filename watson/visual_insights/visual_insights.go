@@ -31,12 +31,18 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultVisualInsightsVersion = "v1"
+const defaultMajorVersion = "v1"
+const defaultUrl = "https://gateway.watsonplatform.net/visual-insights-experimental/api"
 
 // Connects to instance of Watson Concept Insights service
 func NewClient(cfg watson.Config) (Client, error) {
-	ci := Client{version: "/" + defaultVisualInsightsVersion}
-	cfg.Credentials.ServiceName = "visual_insights"
+	ci := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "visual_insights"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

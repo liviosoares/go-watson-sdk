@@ -30,13 +30,19 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultConversationVersion = "v1"
+const defaultMajorVersion = "v1"
 const defaultMinorVersion = "2016-05-19"
+const defaultUrl = "https://gateway.watsonplatform.net/conversation-experimental/api"
 
 // Connects to instance of Watson Conversation service
 func NewClient(cfg watson.Config) (Client, error) {
-	ci := Client{version: "/" + defaultConversationVersion}
-	cfg.Credentials.ServiceName = "conversation"
+	ci := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "conversation"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

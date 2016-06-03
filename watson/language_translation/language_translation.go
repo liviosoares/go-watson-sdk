@@ -34,12 +34,18 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultLanguageTranslationVersion = "v2"
+const defaultMajorVersion = "v2"
+const defaultUrl = "https://gateway.watsonplatform.net/language-translation/api"
 
 // Connects to instance of Watson Natural Language Classifier service
 func NewClient(cfg watson.Config) (Client, error) {
-	lt := Client{version: "/" + defaultLanguageTranslationVersion}
-	cfg.Credentials.ServiceName = "language_translation"
+	lt := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "language_translation"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

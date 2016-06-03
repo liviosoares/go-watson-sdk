@@ -33,15 +33,21 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultNLCVersion = "v1"
+const defaultMajorVersion = "v1"
+const defaultUrl = "https://gateway.watsonplatform.net/natural-language-classifier/api"
 
 // Connects to instance of Watson Natural Language Classifier service
 func NewClient(cfg watson.Config) (Client, error) {
-	nlc := Client{version: "/" + defaultNLCVersion}
+	nlc := Client{version: "/" + defaultMajorVersion}
 	if len(cfg.Version) > 0 {
 		nlc.version = "/" + cfg.Version
 	}
-	cfg.Credentials.ServiceName = "natural_language_classifier"
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "natural_language_classifier"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

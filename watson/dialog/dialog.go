@@ -35,15 +35,21 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultDialogVersion = "v1"
+const defaultMajorVersion = "v1"
+const defaultUrl = "https://gateway.watsonplatform.net/dialog/api"
 
 // Connects to instance of Watson Dialog service
 func NewClient(cfg watson.Config) (Client, error) {
-	dialog := Client{version: "/" + defaultDialogVersion}
+	dialog := Client{version: "/" + defaultMajorVersion}
 	if len(cfg.Version) > 0 {
 		dialog.version = "/" + cfg.Version
 	}
-	cfg.Credentials.ServiceName = "dialog"
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "dialog"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

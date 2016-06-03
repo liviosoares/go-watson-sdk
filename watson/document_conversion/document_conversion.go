@@ -31,13 +31,19 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultDocumentConversionVersion = "v1"
+const defaultMajorVersion = "v1"
 const defaultMinorVersion = "2015-12-15"
+const defaultUrl = "https://gateway.watsonplatform.net/document-conversion/api"
 
 // Connects to instance of Watson Concept Insights service
 func NewClient(cfg watson.Config) (Client, error) {
-	ci := Client{version: "/" + defaultDocumentConversionVersion}
-	cfg.Credentials.ServiceName = "document_conversion"
+	ci := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "document_conversion"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

@@ -32,12 +32,18 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultSpeechToTextVersion = "v1"
+const defaultMajorVersion = "v1"
+const defaultUrl = "https://gateway.watsonplatform.net/speech-to-text/api"
 
 // Connects to instance of Watson Natural Language Classifier service
 func NewClient(cfg watson.Config) (Client, error) {
-	tts := Client{version: "/" + defaultSpeechToTextVersion}
-	cfg.Credentials.ServiceName = "speech_to_text"
+	tts := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "speech_to_text"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

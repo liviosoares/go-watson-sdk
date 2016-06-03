@@ -31,13 +31,19 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultToneAnalyzerVersion = "v3"
+const defaultMajorVersion = "v3"
 const defaultMinorVersion = "2016-02-11"
+const defaultUrl = "https://gateway.watsonplatform.net/tone-analyzer-beta/api"
 
 // Connects to instance of Watson Natural Language Classifier service
 func NewClient(cfg watson.Config) (Client, error) {
-	ta := Client{version: "/" + defaultToneAnalyzerVersion}
-	cfg.Credentials.ServiceName = "tone_analyzer"
+	ta := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "tone_analyzer"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err

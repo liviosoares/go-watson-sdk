@@ -33,13 +33,19 @@ type Client struct {
 	watsonClient *watson.Client
 }
 
-const defaultVisualRecognitionVersion = "v2"
+const defaultMajorVersion = "v2"
 const defaultMinorVersion = "2015-12-02"
+const defaultUrl = "https://gateway.watsonplatform.net/visual-recognition-beta/api"
 
 // Connects to instance of Watson Concept Insights service
 func NewClient(cfg watson.Config) (Client, error) {
-	ci := Client{version: "/" + defaultVisualRecognitionVersion}
-	cfg.Credentials.ServiceName = "visual_recognition"
+	ci := Client{version: "/" + defaultMajorVersion}
+	if len(cfg.Credentials.ServiceName) == 0 {
+		cfg.Credentials.ServiceName = "visual_recognition"
+	}
+	if len(cfg.Credentials.Url) == 0 {
+		cfg.Credentials.Url = defaultUrl
+	}
 	client, err := watson.NewClient(cfg.Credentials)
 	if err != nil {
 		return Client{}, err
