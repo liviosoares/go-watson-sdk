@@ -76,10 +76,17 @@ type MessageInput struct {
 	Text string `json:"text,omitempty"`
 }
 
+type MessageOutput struct {
+	LogMessages []interface{} `json:"log_messages,omitempty"`
+	Text        []string      `json:"text,omitempty"`
+	HitNodes    []string      `json:"hit_nodes,omitempty"`
+}
+
 type MessageResponse struct {
+	Input    MessageInput           `json:"input,omitempty"`
 	Intents  []Intent               `json:"intents,omitempty"`
 	Entities []EntityExample        `json:"entities,omitempty"`
-	Output   MessageInput           `json:"output,omitempty"`
+	Output   MessageOutput          `json:"output,omitempty"`
 	Context  map[string]interface{} `json:"context,omitempty"`
 }
 
