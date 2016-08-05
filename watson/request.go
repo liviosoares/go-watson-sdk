@@ -57,11 +57,23 @@ type Credentials struct {
 }
 
 // NewClient creates a generic Watson client object, using creds as Credential information.
-// If creds is a Credential object with empty Url, Username or Password, then $VCAP_SERVICES
+// The caller's Credentials parameter must specify either:
+// - Url, Username and Password, or
+// - ApiKey
+// If neither of these are valid, then the $VCAP_SERVICES
 // environment variable is used to retrieve service specific credentials.
 // The returned client can be used by multiple go routines concurrently (thread safe).
 func NewClient(creds Credentials) (*Client, error) {
-	if len(creds.Url) == 0 || len(creds.Username) == 0 || len(creds.Password) == 0 {
+
+	validUrlUsernamePass := func() bool {
+		return len(creds.Url) > 0 && len(creds.Username) > 0 && len(creds.Password) > 0
+	}
+
+	validApiKey := func() bool {
+		return len(creds.ApiKey) > 0
+	}
+
+	if !(validUrlUsernamePass() || validApiKey()) {
 		var err error
 		creds, err = getBluemixCredentials(creds.ServiceName, creds.ServicePlan)
 		if err != nil {
