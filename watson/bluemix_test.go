@@ -23,6 +23,8 @@ import (
 	"testing"
 )
 
+const VCAPKEY = "VCAP_SERVICES"
+
 var vcapTests = []struct {
 	vcap_services string
 	service_name  string
@@ -74,8 +76,9 @@ var vcapTests = []struct {
 }
 
 func TestGetCredentials(t *testing.T) {
+	oldVcapServices := os.Getenv(VCAPKEY)
 	for i := range vcapTests {
-		os.Setenv("VCAP_SERVICES", vcapTests[i].vcap_services)
+		os.Setenv(VCAPKEY, vcapTests[i].vcap_services)
 		creds, err := getBluemixCredentials(vcapTests[i].service_name, vcapTests[i].service_plan)
 		if (err != nil && vcapTests[i].err == nil) || (err == nil && vcapTests[i].err != nil) {
 			t.Errorf("credentials test %d:\nVCAP_SERVICES = %s\ngot error %#v\nwanted %#v\n", i, vcapTests[i].vcap_services, err, vcapTests[i].err)
@@ -91,5 +94,10 @@ func TestGetCredentials(t *testing.T) {
 			t.Errorf("credentials test %d:\nVCAP_SERVICES = %s\ngot %#v\nwanted %#v\n", i, vcapTests[i].vcap_services, creds, vcapTests[i].want)
 			return
 		}
+	}
+	if oldVcapServices != "" {
+		os.Setenv(VCAPKEY, oldVcapServices)
+	} else {
+		os.Unsetenv(VCAPKEY)
 	}
 }
