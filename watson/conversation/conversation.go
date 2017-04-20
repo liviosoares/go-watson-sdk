@@ -91,11 +91,11 @@ type MessageResponse struct {
 }
 
 // Calls 'GET /v1/workspaces/{workspace_id}/message' to retrieve response from conversation utterance
-func (c Client) Message(workspace_id string, text string) (MessageResponse, error) {
+func (c Client) Message(workspace_id string, text string, ctx map[string]interface{}) (MessageResponse, error) {
 	q := url.Values{}
 	q.Set("version", defaultMinorVersion)
 
-	message := &Message{Input: MessageInput{Text: text}}
+	message := &Message{Input: MessageInput{Text: text}, Context: ctx}
 	message_json, err := json.Marshal(message)
 	if err != nil {
 		return MessageResponse{}, err
