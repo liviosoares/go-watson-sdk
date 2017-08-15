@@ -57,7 +57,7 @@ func TestStream(t *testing.T) {
 		t.Errorf("NewClient() failed %#v\n", err)
 		return
 	}
-	output, stream, err := c.NewStream("", "audio/wav", map[string]interface{}{"continuous": true, "interim_results": false, "timestamps": false})
+	output, stream, err := c.NewStream("", "", "audio/wav", map[string]interface{}{"continuous": true, "interim_results": false, "timestamps": false})
 	if err != nil {
 		t.Errorf("NewStream() failed %#v %s\n", err, err.Error())
 		return

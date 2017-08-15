@@ -172,7 +172,7 @@ type StateReply struct {
 // audio data. Upon the generation of a transcription event, an 'Event' object is pushed into the output channel.
 // 'options' can contain options to be send in the stream initialization; more information available at:
 // http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/speech-to-text/websockets.shtml#WSstart
-func (c Client) NewStream(model string, content_type string, options map[string]interface{}) (<-chan Event, io.WriteCloser, error) {
+func (c Client) NewStream(model string, customization_id string, content_type string, options map[string]interface{}) (<-chan Event, io.WriteCloser, error) {
 	token, err := authorization.GetToken(c.watsonClient.Creds)
 	if err != nil {
 		return nil, nil, errors.New("failed to acquire auth token: " + err.Error())
@@ -186,6 +186,9 @@ func (c Client) NewStream(model string, content_type string, options map[string]
 	q.Set("watson-token", token)
 	if len(model) > 0 {
 		q.Set("model", model)
+	}
+	if len(customization_id) > 0 {
+		q.Set("customization_id", customization_id)
 	}
 	u.RawQuery = q.Encode()
 	u.Path += c.version + "/recognize"
