@@ -22,6 +22,7 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
+	"net/textproto"
 
 	"github.com/liviosoares/go-watson-sdk/watson"
 )
@@ -73,7 +74,10 @@ func (c Client) Convert(conversion_target string, config_options map[string]inte
 	w := multipart.NewWriter(buf)
 	w.WriteField("config", string(config_json))
 	// write the file out
-	part, err := w.CreateFormFile("file", "file")
+	h := make(textproto.MIMEHeader)
+	h.Set("Content-Disposition", `form-data; name="file"; filename="file"`)
+	h.Set("Content-Type", content_type)
+	part, err := w.CreatePart(h)
 	if err != nil {
 		return nil, err
 	}
